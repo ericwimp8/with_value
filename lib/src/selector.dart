@@ -81,7 +81,7 @@ class _Selector0State<T> extends SingleChildState<Selector0<T>> {
 class Selector<A extends InheritedNotifier, S> extends Selector0<S> {
   Selector({
     required super.builder,
-    required S Function(BuildContext, A) selector,
+    required S Function(BuildContext context, A value) selector,
     super.key,
     super.shouldRebuild,
     super.child,

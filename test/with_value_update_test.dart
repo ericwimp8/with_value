@@ -37,12 +37,12 @@ void main() {
     final oldWidget = WithValueUpdate<TestNotifier>(
       notifier: TestNotifier(0),
       child: Container(),
-      shouldNotify: (old) => true,
+      shouldNotify: (old, newWidget) => true,
     );
     final newWidget = WithValueUpdate<TestNotifier>(
       notifier: TestNotifier(0),
       child: Container(),
-      shouldNotify: (old) => true,
+      shouldNotify: (old, newWidget) => true,
     );
 
     final result = newWidget.updateShouldNotify(oldWidget);
@@ -58,12 +58,12 @@ void main() {
     final oldWidget = WithValueUpdate<ChangeNotifier>(
       notifier: TestNotifier(1),
       child: Container(),
-      shouldNotify: (old) => false,
+      shouldNotify: (old, _) => false,
     );
     final newWidget = WithValueUpdate<ChangeNotifier>(
       notifier: TestNotifier(2),
       child: Container(),
-      shouldNotify: (old) => false,
+      shouldNotify: (old, _) => false,
     );
 
     final result = newWidget.updateShouldNotify(oldWidget);

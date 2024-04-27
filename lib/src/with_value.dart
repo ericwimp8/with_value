@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 /// Parameters:
 ///   [notifier] specifies the [ChangeNotifier] instance to provide to the widgets in the subtree.
 ///   IMPORTANT: To ensure proper functionality of updateShouldNotify, the provided notifier should override the `==` and `hashCode` methods.
+///   or [shouldNotify] should be provided.
 ///   [child] is the widget below this widget in the tree. This widget can access the provided value.
 ///   [key] is an optional key that controls how one widget replaces another widget in the tree.
 ///   [shouldNotify]  is an optional callback to determine if dependents should be notified about updates.
@@ -64,7 +65,10 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
   });
 
   /// An optional callback to determine if dependents should be notified about updates.
-  final bool Function(WithValueUpdate<T>)? shouldNotify;
+  final bool Function(
+    WithValueUpdate<T> oldWidget,
+    WithValueUpdate<T> newWidget,
+  )? shouldNotify;
 
   /// Retrieves the nearest [WithValueUpdate] up the widget tree and returns its [notifier].
   /// Throws a [FlutterError] if no [WithValueUpdate] is found with the appropriate type.
@@ -109,10 +113,11 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
     return result;
   }
 
-  /// IMPORTANT: To ensure proper functionality, the provided notifier should override the `==` and `hashCode` methods.
+  // IMPORTANT: To ensure proper functionality, the provided notifier should override the `==` and `hashCode` methods.
+  // or [shouldNotify] should be provided.
   @override
   bool updateShouldNotify(WithValueUpdate<T> oldWidget) =>
-      shouldNotify?.call(oldWidget) ?? oldWidget.notifier != notifier;
+      shouldNotify?.call(oldWidget, this) ?? oldWidget.notifier != notifier;
 }
 
 /// A Flutter widget that inherits from [InheritedWidget] to provide a specific value down the widget tree.
