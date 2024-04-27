@@ -211,9 +211,10 @@ packages:
   with_value:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      name: with_value
+      sha256: c79937d4a31f92194ac46ee756d9df464ac888225278953aca96dd723d2f4cb8
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1"
 sdks:
   dart: ">=3.3.3 <4.0.0"
