@@ -86,7 +86,7 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
 
     if (result == null) {
       throw FlutterError(
-        '$K was not found in the widget tree. Make sure to wrap your widget tree with a $K.',
+        '$K was not found in the widget tree. Make sure to wrap your widget tree with a WithValueUpdate<$K>.',
       );
     }
     return result.notifier!;
