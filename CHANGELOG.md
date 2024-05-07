@@ -5,3 +5,7 @@
 ## 0.0.2
 
 - Fix github issues url
+
+## 0.0.3
+
+- Fix spelling and grammar in documentation
