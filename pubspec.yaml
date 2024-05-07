@@ -1,12 +1,12 @@
 name: with_value
 description: "Simple InheritedWidget Wrapper."
-version: 0.0.1
+version: 0.0.2
 
 repository: https://github.com/ericwimp8/with_value
 
 homepage: https://github.com/ericwimp8/with_value
 
-issue_tracker: https://github.com/gskinner/with_value/issues
+issue_tracker: https://github.com/ericwimp8/with_value/issues
 
 platforms:
   android:
