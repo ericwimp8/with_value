@@ -12,14 +12,14 @@ There is no support for this package; please use Provider if you want InheritedW
 - Make sure to override the `==` and `hashCode` methods for non-primitive types to ensure proper functionality.
 - Example usage:
 
-````dart
+```dart
 WithValue<int>(
   value: 42,
   child: MyWidget(),
 )
 
 int value = WithValue.of<int>(context);
-
+```
 
 ## Usage
 
@@ -35,4 +35,4 @@ WithValueUpdate<MyNotifier>(
 
 MyNotifier notifier = WithValueUpdate.of<MyNotifier>(context);
 
-````
+```

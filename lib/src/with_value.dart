@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 ///
 /// Parameters:
 ///   [notifier] specifies the [ChangeNotifier] instance to provide to the widgets in the subtree.
-///   IMPORTANT: To ensure proper functionality of updateShouldNotify, the provided notifier should override the `==` and `hashCode` methods.
+///   IMPORTANT: To ensure the proper functionality of updateShouldNotify, the provided notifier should override the `==` and `hashCode` methods,
 ///   or [shouldNotify] should be provided.
 ///   [child] is the widget below this widget in the tree. This widget can access the provided value.
 ///   [key] is an optional key that controls how one widget replaces another widget in the tree.
@@ -131,12 +131,12 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
 ///
 /// Parameters:
 ///   [value] - The data value to be provided to the widgets in the subtree.
-///   IMPORTANT: To ensure proper functionality if the value is not a primitive type it should override the `==` and `hashCode` methods.
+///   IMPORTANT: To ensure proper functionality, if the value is not a primitive type, it should override the `==` and `hashCode` methods.
 ///   [child] - The widget below this widget in the tree. This widget can access the provided value.
 ///   [key] - An optional key that controls how one widget replaces another widget in the tree.
 ///
 /// [WithValue] includes [WithValue.of] to retrieve the nearest [WithValue] up the widget tree
-/// and return its [value]. If the `IneheritedWidget` is not found, a `FlutterError` is thrown.
+/// and return its [value]. If the `InheritedWidget` is not found, a `FlutterError` is thrown.
 ///
 /// Example Usage:
 ///
