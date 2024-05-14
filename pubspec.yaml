@@ -1,6 +1,6 @@
 name: with_value
 description: "Simple InheritedWidget Wrapper."
-version: 0.0.3
+version: 0.0.4
 
 repository: https://github.com/ericwimp8/with_value
 
