@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 ///   [shouldNotify]  is an optional callback to determine if dependents should be notified about updates.
 ///
 /// [WithValueUpdate] includes a [WithValueUpdate.of] to retrieve the nearest [WithValueUpdate] up the widget tree
-/// and return its [notifier]. If the `InheritedNotifier` is not found, a `FlutterError` is thrown.
+/// and return its [notifier]. If the `InheritedNotifier` is not found, a `AssertionError` is thrown.
 ///
 /// Example Usage:
 ///
@@ -71,7 +71,7 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
   )? shouldNotify;
 
   /// Retrieves the nearest [WithValueUpdate] up the widget tree and returns its [notifier].
-  /// Throws a [FlutterError] if no [WithValueUpdate] is found with the appropriate type.
+  /// Throws a [AssertionError] if no [WithValueUpdate] is found with the appropriate type.
   ///
   /// [context] - The build context from which the widget tree is accessed.
   static K of<K extends ChangeNotifier>(
@@ -83,17 +83,16 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
     // final foo = context
     //     .getElementForInheritedWidgetOfExactType<WithUpdate<K>>()!
     //     .widget as InheritedWidget;
+    assert(
+      result != null,
+      '$K was not found in the widget tree. Make sure to wrap your widget tree with a WithValueUpdate<$K>.',
+    );
 
-    if (result == null) {
-      throw FlutterError(
-        '$K was not found in the widget tree. Make sure to wrap your widget tree with a WithValueUpdate<$K>.',
-      );
-    }
-    return result.notifier!;
+    return result!.notifier!;
   }
 
   /// Retrieves the nearest [WithValueUpdate] up the widget tree and returns.
-  /// Throws a [FlutterError] if no [WithValueUpdate] is found with the appropriate type.
+  /// Throws a [AssertionError] if no [WithValueUpdate] is found with the appropriate type.
   ///
   /// [context] - The build context from which the widget tree is accessed.
   static K notifierOf<K extends InheritedNotifier>(
@@ -104,13 +103,12 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
     // final foo = context
     //     .getElementForInheritedWidgetOfExactType<WithUpdate<K>>()!
     //     .widget as InheritedWidget;
+    assert(
+      result != null,
+      '$K was not found in the widget tree. Make sure to wrap your widget tree with a $K.',
+    );
 
-    if (result == null) {
-      throw FlutterError(
-        '$K was not found in the widget tree. Make sure to wrap your widget tree with a $K.',
-      );
-    }
-    return result;
+    return result!;
   }
 
   // IMPORTANT: To ensure proper functionality, the provided notifier should override the `==` and `hashCode` methods.
@@ -136,7 +134,7 @@ class WithValueUpdate<T extends Listenable> extends InheritedNotifier<T> {
 ///   [key] - An optional key that controls how one widget replaces another widget in the tree.
 ///
 /// [WithValue] includes [WithValue.of] to retrieve the nearest [WithValue] up the widget tree
-/// and return its [value]. If the `InheritedWidget` is not found, a `FlutterError` is thrown.
+/// and return its [value]. If the `InheritedWidget` is not found, a `AssertionError` is thrown.
 ///
 /// Example Usage:
 ///
@@ -164,7 +162,7 @@ class WithValue<T> extends InheritedWidget {
 
   /// Retrieves the value of type [T] from the nearest ancestor [WithValue] widget.
   ///
-  /// Throws an assertion error if the [WithValue] widget is not found in the widget tree.
+  /// Throws an AssertionError if the [WithValue] widget is not found in the widget tree.
   static T of<T>(BuildContext context) {
     final result = maybeOf<T>(context);
     assert(

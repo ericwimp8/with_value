@@ -27,7 +27,7 @@ void main() {
     expect(
       () => WithValueUpdate.of<ChangeNotifier>(
           tester.element(find.byType(Container))),
-      throwsA(isInstanceOf<FlutterError>()),
+      throwsAssertionError,
     );
   });
 
